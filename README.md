@@ -29,13 +29,13 @@ gulp
 ## Database setup
 
 ```
-DROP DATABASE IF EXISTS sampledb; CREATE DATABASE IF NOT EXISTS sampledb DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+DROP DATABASE IF EXISTS todomvc; CREATE DATABASE IF NOT EXISTS todomvc DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
-In addition, you need the "sampledb" user to have full access to this database:
+In addition, you need the "todomvc" user to have full access to this database:
 
 ```
-GRANT ALL PRIVILEGES ON sampledb.* TO 'sampledb'@'localhost' IDENTIFIED BY 'sampledb' WITH GRANT OPTION; FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON todomvc.* TO 'todomvc'@'localhost' IDENTIFIED BY 'todomvc' WITH GRANT OPTION; FLUSH PRIVILEGES;
 ```
 
 
