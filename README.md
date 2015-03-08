@@ -50,3 +50,30 @@ cd frontend
 ```
 php artisan migrate
 ```
+
+
+## flux-todomvc setup
+
+```
+cd frontend/public/flux-todomvc
+```
+
+install module
+
+```
+npm install
+```
+
+start script(see package.json)
+
+```
+npm start
+```
+
+
+
+
+
+
+
+
