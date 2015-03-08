@@ -1,0 +1,11 @@
+#jetbrains
+.idea/
+
+.DS_Store
+.codekit-cache
+frontend/app/storage/attachments/*
+frontend/node_modules
+frontend/public/css
+frontend/public/js
+Thumbs.db
+frontend/npm-debug.log
