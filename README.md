@@ -1,5 +1,5 @@
 # todomvc-sandbox
-laravel app set todomvc-sandbox 
+laravel app server set todomvc-sandbox 
 
 ```
 laravel 5
