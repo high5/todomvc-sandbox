@@ -19,3 +19,13 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+Route::resource('todos', 'TodosController',
+                array('except' => array('create', 'edit')));
+
+/*
+Route::get('/todos', 'TodosController@index');
+Route::get('/todos/{id}', 'TodosController@show');
+*/
+
