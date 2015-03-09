@@ -1,7 +1,5 @@
-# laravel-angular-bootstrap
-Laravel, AngularJS, Bootstrap Boilerplate
-
-version
+# todomvc-sandbox
+laravel app set todomvc-sandbox 
 
 ```
 laravel 5
