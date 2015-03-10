@@ -14,6 +14,8 @@ class TodosController extends Controller {
      */
 	public function __construct()
 	{
+        //Event::forget('router.filter: csrf');
+
 		$this->middleware('guest');
 	}
 
@@ -25,21 +27,19 @@ class TodosController extends Controller {
 	 */
 	public function index()
 	{
-		var_dump('idex');
         exit;
 	}
+
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-    /*
 	public function create()
 	{
 		//
 	}
-    */
 
 	/**
 	 * Store a newly created resource in storage.
@@ -49,7 +49,43 @@ class TodosController extends Controller {
 	 */
 	public function store()
 	{
+        var_dump('test');
+        exit;
+
+
+
 		//
+
+        /*
+        $title = Request::get('title');
+        return Response::json(array(
+            'error' => false,
+            'id'    => 2,
+            'title' => $title,
+            200
+        ));
+        */
+
+        /*
+        $url = new Url;
+        $url->url = Request::get('url');
+        $url->description = Request::get('description');
+        $url->user_id = Auth::user()->id;
+
+
+        $url->save();
+
+        return Response::json(array(
+            'error' => false,
+            'urls' => $urls->toArray()),
+            200
+        );
+        */
+
+
+
+
+
 	}
 
 	/**
@@ -101,6 +137,7 @@ class TodosController extends Controller {
 	{
 		//
 	}
+
 
 
 
