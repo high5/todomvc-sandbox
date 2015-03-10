@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
@@ -20,12 +19,5 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-
-Route::resource('todos', 'TodosController',
-                array('except' => array('create', 'edit')));
-
-/*
-Route::get('/todos', 'TodosController@index');
-Route::get('/todos/{id}', 'TodosController@show');
-*/
-
+//todomvc
+Route::resource('todos', 'TodosController');
