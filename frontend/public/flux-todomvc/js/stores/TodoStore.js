@@ -9,6 +9,10 @@
  * TodoStore
  */
 
+//var $ = require('jquery')(window);
+var $ = require("jquery");
+
+
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var TodoConstants = require('../constants/TodoConstants');
@@ -32,6 +36,17 @@ function create(text) {
     complete: false,
     text: text
   };
+
+  $.ajax({
+    type: "POST",
+    url: "/todos",
+    data: { title: text}
+  })
+  .done(function( msg ) {
+    alert( "Data Saved: " + msg );
+  });
+
+
 }
 
 /**
