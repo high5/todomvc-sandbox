@@ -16,8 +16,8 @@ class CreateTodosTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('title');
-			$table->integer('order');
-            $table->tinyInteger('complete');
+			$table->integer('order')->default(0);
+            $table->tinyInteger('complete')->default(0);
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
 		});
