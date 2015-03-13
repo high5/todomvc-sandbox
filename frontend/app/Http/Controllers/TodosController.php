@@ -1,5 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use Input;
+use Request;
+use Response;
+use DB;
+use Log;
+
 /**
  * Class TodosController
  * @package App\Http\Controllers
@@ -49,13 +55,26 @@ class TodosController extends Controller {
 	 */
 	public function store()
 	{
-        var_dump('test');
+        $title = Input::get('title');
+
+        $id = DB::table('todos')->insertGetId(
+            array(
+                'title'      => $title,
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            )
+        );
+
+        return Response::json(array(
+            'error' => false,
+            'id'    => $id,
+            200
+        ));
+
         exit;
 
 
-
 		//
-
         /*
         $title = Request::get('title');
         return Response::json(array(

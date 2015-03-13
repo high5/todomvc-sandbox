@@ -9,6 +9,8 @@
  * TodoActions
  */
 
+var $ = require("jquery");
+
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var TodoConstants = require('../constants/TodoConstants');
 
@@ -18,10 +20,28 @@ var TodoActions = {
    * @param  {string} text
    */
   create: function(text) {
-    AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_CREATE,
-      text: text
+
+    $.ajax({
+      cache:false,
+      type: "POST",
+      url: "/todos",
+      data: {
+        title: text
+      }
+    })
+    .done(function(res) {
+      AppDispatcher.dispatch({
+        actionType: TodoConstants.TODO_CREATE,
+        id  : res.id,
+        text: text
+      });
+    })
+    .fail(function() {
+      alert( "error" );
+    })
+    .always(function() {
     });
+
   },
 
   /**
