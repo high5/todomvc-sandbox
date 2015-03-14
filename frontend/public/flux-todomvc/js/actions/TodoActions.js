@@ -16,6 +16,10 @@ var TodoConstants = require('../constants/TodoConstants');
 
 var TodoActions = {
 
+  getAll: function() {
+
+  },
+
   /**
    * @param  {string} text
    */
@@ -26,7 +30,7 @@ var TodoActions = {
       type: "POST",
       url: "/todos",
       data: {
-        title: text
+        text: text
       }
     })
     .done(function(res) {
@@ -37,7 +41,6 @@ var TodoActions = {
       });
     })
     .fail(function() {
-      alert( "error" );
     })
     .always(function() {
     });
