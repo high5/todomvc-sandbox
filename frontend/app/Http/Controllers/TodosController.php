@@ -20,8 +20,6 @@ class TodosController extends Controller {
      */
 	public function __construct()
 	{
-        //Event::forget('router.filter: csrf');
-
 		$this->middleware('guest');
 	}
 
@@ -33,7 +31,27 @@ class TodosController extends Controller {
 	 */
 	public function index()
 	{
-        exit;
+
+        $list = (array)DB::table('todos')->select('id', 'text', 'complete')->get();
+
+        $todos = array();
+
+        foreach ($list as $k => $v) {
+            $todos[$v->id] = array(
+                'id'       => $v->id,
+                'text'     => $v->text,
+                'complete' => ($v->complete == 0)? false:true,
+            );
+        }
+
+        //Log::write('info', print_r($list, true));
+
+        return Response::json(array(
+            'error' => false,
+            'todos' => $todos,
+            200
+        ));
+
 	}
 
 
@@ -55,11 +73,11 @@ class TodosController extends Controller {
 	 */
 	public function store()
 	{
-        $title = Input::get('title');
+        $text = Input::get('text');
 
         $id = DB::table('todos')->insertGetId(
             array(
-                'title'      => $title,
+                'text'      => $text,
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s'),
             )
@@ -72,39 +90,6 @@ class TodosController extends Controller {
         ));
 
         exit;
-
-
-		//
-        /*
-        $title = Request::get('title');
-        return Response::json(array(
-            'error' => false,
-            'id'    => 2,
-            'title' => $title,
-            200
-        ));
-        */
-
-        /*
-        $url = new Url;
-        $url->url = Request::get('url');
-        $url->description = Request::get('description');
-        $url->user_id = Auth::user()->id;
-
-
-        $url->save();
-
-        return Response::json(array(
-            'error' => false,
-            'urls' => $urls->toArray()),
-            200
-        );
-        */
-
-
-
-
-
 	}
 
 	/**

@@ -22,7 +22,6 @@ var CHANGE_EVENT = 'change';
 
 var _todos = {};
 
-hoge = 'moge';
 
 /**
  * Create a TODO item.
@@ -95,13 +94,22 @@ var TodoStore = assign({}, EventEmitter.prototype, {
     return true;
   },
 
+  setAll: function(todos) {
+    console.log('TodoStore setAll');
+    _todos = todos;
+  },
+
+
   /**
    * Get the entire collection of TODOs.
    * @return {object}
    */
   getAll: function() {
+    console.log('todos getAll');
     return _todos;
   },
+
+
 
   emitChange: function() {
     this.emit(CHANGE_EVENT);

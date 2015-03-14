@@ -12,11 +12,14 @@
  * the TodoStore and passes the new data to its children.
  */
 
+var $ = require("jquery");
+
 var Footer = require('./Footer.react');
 var Header = require('./Header.react');
 var MainSection = require('./MainSection.react');
 var React = require('react');
 var TodoStore = require('../stores/TodoStore');
+var TodoAction = require('../actions/TodoActions');
 
 /**
  * Retrieve the current TODO data from the TodoStore
@@ -31,6 +34,24 @@ function getTodoState() {
 var TodoApp = React.createClass({
 
   getInitialState: function() {
+    console.log('getInitialState');
+
+    $.ajax({
+      async:false,
+      cache:false,
+      type: "GET",
+      url: "/todos"
+    })
+    .done(function(res) {
+      TodoStore.setAll(res.todos);
+    })
+    .fail(function() {
+    })
+    .always(function() {
+    });
+
+
+
     return getTodoState();
   },
 
