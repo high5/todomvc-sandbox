@@ -16,9 +16,7 @@ var TodoConstants = require('../constants/TodoConstants');
 
 var TodoActions = {
 
-  getAll: function() {
-
-  },
+  getAll: function() {},
 
   /**
    * @param  {string} text
@@ -52,11 +50,29 @@ var TodoActions = {
    * @param  {string} text
    */
   updateText: function(id, text) {
-    AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_UPDATE_TEXT,
-      id: id,
-      text: text
+
+    $.ajax({
+      cache:false,
+      type: "PUT",
+      url: "/todos/" + id,
+      data: {
+        text: text
+      }
+    })
+    .done(function(res) {
+      AppDispatcher.dispatch({
+        actionType: TodoConstants.TODO_UPDATE_TEXT,
+        id: id,
+        text: text
+      });
+    })
+    .fail(function() {
+    })
+    .always(function() {
     });
+
+
+
   },
 
   /**
@@ -65,17 +81,43 @@ var TodoActions = {
    */
   toggleComplete: function(todo) {
     var id = todo.id;
-    if (todo.complete) {
-      AppDispatcher.dispatch({
-        actionType: TodoConstants.TODO_UNDO_COMPLETE,
-        id: id
-      });
-    } else {
-      AppDispatcher.dispatch({
-        actionType: TodoConstants.TODO_COMPLETE,
-        id: id
-      });
-    }
+
+    $.ajax({
+      cache:false,
+      type: "PUT",
+      url: "/complete/" + id,
+      data: {
+        complete: todo.complete
+      }
+    })
+    .done(function(res) {
+      if (todo.complete) {
+        AppDispatcher.dispatch({
+          actionType: TodoConstants.TODO_UNDO_COMPLETE,
+          id: id
+        });
+      } else {
+        AppDispatcher.dispatch({
+          actionType: TodoConstants.TODO_COMPLETE,
+          id: id
+        });
+      }
+    })
+    .fail(function() {
+    })
+    .always(function() {
+    });
+
+
+
+
+
+
+
+
+
+
+
   },
 
   /**
@@ -91,10 +133,23 @@ var TodoActions = {
    * @param  {string} id
    */
   destroy: function(id) {
-    AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_DESTROY,
-      id: id
+
+    $.ajax({
+      cache:false,
+      type: "DELETE",
+      url: "/todos/" + id
+    })
+    .done(function(res) {
+      AppDispatcher.dispatch({
+        actionType: TodoConstants.TODO_DESTROY,
+        id: id
+      });
+    })
+    .fail(function() {
+    })
+    .always(function() {
     });
+
   },
 
   /**

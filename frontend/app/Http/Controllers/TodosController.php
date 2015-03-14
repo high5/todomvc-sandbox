@@ -127,7 +127,20 @@ class TodosController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $text = Input::get('text');
+
+        DB::table('todos')
+            ->where('id', $id)
+            ->update(
+                array(
+                    'text' => $text
+                )
+            );
+
+        return Response::json(array(
+            'error' => false,
+            200
+        ));
 	}
 
 	/**
@@ -139,8 +152,44 @@ class TodosController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+
+        DB::table('todos')->where('id', $id)->delete();
+
+        return Response::json(array(
+            'error' => false,
+            200
+        ));
+
 	}
+
+
+	/**
+	 * Update the specified resource in storage.
+	 * Verb PUT/PATCH
+     * Path /complete/{id}
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function complete($id)
+	{
+        $complete = Input::get('complete');
+
+        Log::write('debug', gettype($complete));
+
+        DB::table('todos')
+            ->where('id', $id)
+            ->update(
+                array(
+                    'complete' => ($complete == 'false')? 1:0,
+                )
+            );
+
+        return Response::json(array(
+            'error' => false,
+            200
+        ));
+	}
+
 
 
 
