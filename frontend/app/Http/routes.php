@@ -21,3 +21,6 @@ Route::controllers([
 
 //todomvc
 Route::resource('todos', 'TodosController');
+
+Route::put('complete/{id}', 'TodosController@complete');
+
